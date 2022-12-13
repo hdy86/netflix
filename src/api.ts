@@ -69,3 +69,10 @@ export function getTopTv() {
     `${BASE_PATH}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1&region=kr`
   ).then((response) => response.json());
 }
+
+// search
+export function searchMulti(keyword: string | null) {
+  return fetch(
+    `${BASE_PATH}/search/multi?api_key=${API_KEY}&language=en-US&page=1&region=krR&query=${keyword}`
+  ).then((response) => response.json());
+}
