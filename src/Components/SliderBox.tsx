@@ -208,6 +208,7 @@ const infoVariants = {
 };
 
 interface ISliderProps {
+  page: string;
   title: string;
   category: string;
   data: IGetMoviesResult | undefined;
@@ -217,10 +218,10 @@ const offset = 6; // 한 페이지에 보여지는 영화 갯수
 const NEXFLIX_LOGO_URL =
   "https://assets.brand.microsites.netflix.io/assets/2800a67c-4252-11ec-a9ce-066b49664af6_cm_800w.jpg?v=4";
 
-function SliderBox({ title, category, data }: ISliderProps) {
+function SliderBox({ page, title, category, data }: ISliderProps) {
   const history = useHistory();
   const bigMovieMatch = useRouteMatch<{ movieId: string }>(
-    `/movies/${category}/:movieId`
+    `/${page}/${category}/:movieId`
   );
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -247,9 +248,9 @@ function SliderBox({ title, category, data }: ISliderProps) {
   };
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const onBoxClicked = (movieId: number) => {
-    history.push(`/movies/${category}/${movieId}`);
+    history.push(`/${page}/${category}/${movieId}`);
   };
-  const onOverlayClick = () => history.push("/");
+  const onOverlayClick = () => history.push(`/${page}`);
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
@@ -326,13 +327,21 @@ function SliderBox({ title, category, data }: ISliderProps) {
                         )})`,
                       }}
                     />
-                    <BigTitle>{clickedMovie.title}</BigTitle>
+                    <BigTitle>
+                      {(clickedMovie.title && clickedMovie.title) ||
+                        (clickedMovie.name && clickedMovie.name)}
+                    </BigTitle>
                   </BigImgBox>
                   <BigText>
                     <BigDesc>
                       <p>⭐ {clickedMovie.vote_average}</p>
                       <i></i>
-                      <p>{clickedMovie.release_date}</p>
+                      <p>
+                        {(clickedMovie.release_date &&
+                          clickedMovie.release_date) ||
+                          (clickedMovie.first_air_date &&
+                            clickedMovie.first_air_date)}
+                      </p>
                     </BigDesc>
                     <BigOverview>{clickedMovie.overview}</BigOverview>
                   </BigText>

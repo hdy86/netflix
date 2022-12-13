@@ -89,21 +89,25 @@ function Movie() {
           </Banner>
           <Inner>
             <SliderBox
+              page="movies"
               title="지금 뜨는 콘텐츠"
               category={POPULAR}
               data={popularData}
             />
             <SliderBox
+              page="movies"
               title="현재 상영 중인 콘텐츠"
               category={NOWPLAYING}
               data={nowData}
             />
             <SliderBox
+              page="movies"
               title="평점 높은 콘텐츠"
               category={TOPRATED}
               data={topRatedData}
             />
             <SliderBox
+              page="movies"
               title="새로 올라온 콘텐츠"
               category={UPCOMING}
               data={upComingData}
