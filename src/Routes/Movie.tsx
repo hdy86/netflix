@@ -57,21 +57,21 @@ const Inner = styled.div`
   overflow: hidden;
 `;
 
-function Home() {
+function Movie() {
   const { data: popularData, isLoading } = useQuery<IGetMoviesResult>(
-    ["movies", "popular"],
+    ["movies", POPULAR],
     getPopularMovies
   );
   const { data: nowData } = useQuery<IGetMoviesResult>(
-    ["movies", "nowPlaying"],
+    ["movies", NOWPLAYING],
     getNowMovies
   );
   const { data: topRatedData } = useQuery<IGetMoviesResult>(
-    ["movies", "topRated"],
+    ["movies", TOPRATED],
     getTopMovies
   );
   const { data: upComingData } = useQuery<IGetMoviesResult>(
-    ["movies", "upComing"],
+    ["movies", UPCOMING],
     getUpcomingMovies
   );
 
@@ -115,4 +115,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Movie;
