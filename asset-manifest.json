@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/netflex/static/js/main.31b98247.js",
+    "index.html": "/netflex/index.html",
+    "main.31b98247.js.map": "/netflex/static/js/main.31b98247.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.31b98247.js"
+  ]
+}
