@@ -32,13 +32,19 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path="/tv">
+          <Route path={["/netflix/tv", "/netflix/tv/:category/:movieId"]}>
             <Tv />
           </Route>
-          <Route path="/search">
+          <Route path="/netflix/search">
             <Search />
           </Route>
-          <Route path={["/", "/movies/", "/movies/:movieId"]}>
+          <Route
+            path={[
+              "/netflix/",
+              "/netflix/movies/",
+              "/netflix/movies/:category/:movieId",
+            ]}
+          >
             <Movie />
           </Route>
         </Switch>

@@ -100,8 +100,8 @@ interface IForm {
 
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
-  const homeMatch = useRouteMatch("/");
-  const tvMatch = useRouteMatch("/tv");
+  const homeMatch = useRouteMatch("/netflix/movies/");
+  const tvMatch = useRouteMatch("/netflix/tv");
   const inputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -128,7 +128,7 @@ function Header() {
   const history = useHistory();
   const { register, handleSubmit } = useForm<IForm>();
   const onValid = (data: IForm) => {
-    history.push(`/search?keyword=${data.keyword}`);
+    history.push(`/netflix/search?keyword=${data.keyword}`);
   };
 
   return (
@@ -147,12 +147,12 @@ function Header() {
         </Logo>
         <Items>
           <Item>
-            <Link to="/">
+            <Link to="/netflix/movies/">
               Movie {homeMatch?.isExact && <Circle layoutId="circle" />}
             </Link>
           </Item>
           <Item>
-            <Link to="/tv">
+            <Link to="/netflix/tv">
               Tv Program {tvMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>

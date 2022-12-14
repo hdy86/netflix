@@ -157,11 +157,14 @@ const NEXFLIX_LOGO_URL =
 
 function SliderBox({ keyword, data }: ISliderProps) {
   const history = useHistory();
-  const bigMovieMatch = useRouteMatch<{ movieId: string }>(`/search/:movieId`);
+  const bigMovieMatch = useRouteMatch<{ movieId: string }>(
+    `/netflix/search/:movieId`
+  );
   const onBoxClicked = (movieId: number) => {
-    history.push(`/search/${movieId}?keyword=${keyword}`);
+    history.push(`/netflix/search/${movieId}?keyword=${keyword}`);
   };
-  const onOverlayClick = () => history.push(`/search?keyword=${keyword}`);
+  const onOverlayClick = () =>
+    history.push(`/netflix/search?keyword=${keyword}`);
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);

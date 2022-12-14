@@ -222,7 +222,7 @@ const NEXFLIX_LOGO_URL =
 function SliderBox({ page, title, category, data }: ISliderProps) {
   const history = useHistory();
   const bigMovieMatch = useRouteMatch<{ movieId: string }>(
-    `/${page}/${category}/:movieId`
+    `/netflix/${page}/${category}/:movieId`
   );
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -249,9 +249,9 @@ function SliderBox({ page, title, category, data }: ISliderProps) {
   };
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const onBoxClicked = (movieId: number) => {
-    history.push(`/${page}/${category}/${movieId}`);
+    history.push(`/netflix/${page}/${category}/${movieId}`);
   };
-  const onOverlayClick = () => history.push(`/${page}`);
+  const onOverlayClick = () => history.push(`/netflix/${page}`);
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
