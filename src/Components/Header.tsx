@@ -147,8 +147,8 @@ function Header() {
         </Logo>
         <Items>
           <Item>
-            <Link to="/netflix/movies/">
-              Movie {homeMatch?.isExact && <Circle layoutId="circle" />}
+            <Link to="/netflix/movies">
+              Movie {homeMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
           <Item>
