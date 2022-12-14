@@ -80,6 +80,7 @@ const Thumnail = styled.div<{ bgPhoto: string }>`
 `;
 const Info = styled(motion.div)`
   position: absolute;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding: 10px;
@@ -297,7 +298,10 @@ function SliderBox({ page, title, category, data }: ISliderProps) {
                       }
                     />
                     <Info variants={infoVariants}>
-                      <h4>{movie.title}</h4>
+                      <h4>
+                        {(movie.title && movie.title) ||
+                          (movie.name && movie.name)}
+                      </h4>
                     </Info>
                   </Box>
                 ))}

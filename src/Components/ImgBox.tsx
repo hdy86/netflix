@@ -5,19 +5,16 @@ import styled from "styled-components";
 import { IGetMoviesResult } from "../api";
 import { makeImagePath } from "../utilities";
 
-const Container = styled.div`
-  padding-bottom: 30px;
-`;
 const Box = styled(motion.div)`
   border-radius: 5px;
   font-size: 66px;
   overflow: hidden;
   cursor: pointer;
 
-  &:first-child {
+  &:nth-of-type(6n + 1) {
     transform-origin: center left;
   }
-  &:last-child {
+  &:nth-of-type(6n) {
     transform-origin: center right;
   }
 `;
@@ -30,6 +27,7 @@ const Thumnail = styled.div<{ bgPhoto: string }>`
 `;
 const Info = styled(motion.div)`
   position: absolute;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding: 10px;
@@ -172,34 +170,35 @@ function SliderBox({ keyword, data }: ISliderProps) {
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
 
+  console.log(data?.results);
   return (
     <>
-      <>
-        <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
-          {data?.results.map((movie) => (
-            <Box
-              layoutId={movie.id + ""}
-              key={movie.id}
-              variants={boxVariants}
-              whileHover="hover"
-              initial="normal"
-              transition={{ type: "tween" }}
-              onClick={() => onBoxClicked(movie.id)}
-            >
-              <Thumnail
-                bgPhoto={
-                  movie.backdrop_path
-                    ? makeImagePath(movie.backdrop_path, "w500")
-                    : NEXFLIX_LOGO_URL
-                }
-              />
-              <Info variants={infoVariants}>
-                <h4>{movie.title}</h4>
-              </Info>
-            </Box>
-          ))}
-        </AnimatePresence>
-      </>
+      <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
+        {data?.results.map((movie) => (
+          <Box
+            layoutId={movie.id + ""}
+            key={movie.id}
+            variants={boxVariants}
+            whileHover="hover"
+            initial="normal"
+            transition={{ type: "tween" }}
+            onClick={() => onBoxClicked(movie.id)}
+          >
+            <Thumnail
+              bgPhoto={
+                movie.backdrop_path
+                  ? makeImagePath(movie.backdrop_path, "w500")
+                  : NEXFLIX_LOGO_URL
+              }
+            />
+            <Info variants={infoVariants}>
+              <h4>
+                {(movie.title && movie.title) || (movie.name && movie.name)}
+              </h4>
+            </Info>
+          </Box>
+        ))}
+      </AnimatePresence>
 
       <AnimatePresence>
         {bigMovieMatch ? (
