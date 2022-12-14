@@ -33,6 +33,13 @@ const List = styled.div`
   grid-template-columns: repeat(6, 1fr);
 `;
 
+const ListNone = styled.div`
+  padding: 100px 0;
+  font-size: 20px;
+  color: #999;
+  text-align: center;
+`;
+
 function Search() {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
@@ -51,9 +58,13 @@ function Search() {
           <Title>
             <b>' {keyword} '</b> 검색 결과
           </Title>
-          <List>
-            <ImgBox keyword={keyword} data={data} />
-          </List>
+          {data?.results.length !== 0 ? (
+            <List>
+              <ImgBox keyword={keyword} data={data} />
+            </List>
+          ) : (
+            <ListNone>검색 결과가 없습니다.</ListNone>
+          )}
         </>
       )}
     </Wrapper>

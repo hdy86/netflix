@@ -157,23 +157,18 @@ const NEXFLIX_LOGO_URL =
 
 function SliderBox({ keyword, data }: ISliderProps) {
   const history = useHistory();
-  const bigMovieMatch = useRouteMatch<{ movieId: string }>(
-    `/search/search/:movieId`
-  );
-  const [leaving, setLeaving] = useState(false);
-  const toggleLeaving = () => setLeaving((prev) => !prev);
+  const bigMovieMatch = useRouteMatch<{ movieId: string }>(`/search/:movieId`);
   const onBoxClicked = (movieId: number) => {
-    history.push(`/search/search/${movieId}?keyword=${keyword}`);
+    history.push(`/search/${movieId}?keyword=${keyword}`);
   };
   const onOverlayClick = () => history.push(`/search?keyword=${keyword}`);
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
 
-  console.log(data?.results);
   return (
     <>
-      <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
+      <AnimatePresence initial={false}>
         {data?.results.map((movie) => (
           <Box
             layoutId={movie.id + ""}
