@@ -45,7 +45,7 @@ const Inner = styled.div`
 //   grid-template-columns: repeat(6, 1fr);
 // `;
 const ListNone = styled.div`
-  padding: 100px 0;
+  padding: 60px 0;
   font-size: 20px;
   color: #999;
   text-align: center;
