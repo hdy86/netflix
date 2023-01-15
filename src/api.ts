@@ -5,7 +5,7 @@ export const POPULAR = "popular";
 export const TOPRATED = "topRated";
 export const NOWPLAYING = "nowPlaying";
 export const UPCOMING = "upComing";
-export const ONAIR = "onAir";
+export const AIRTODAY = "airToday";
 
 interface IMovie {
   id: number;
@@ -59,9 +59,9 @@ export function getPopularTv() {
     `${BASE_PATH}/tv/popular?api_key=${API_KEY}&language=en-US&page=1&region=kr`
   ).then((response) => response.json());
 }
-export function getOnAirTv() {
+export function getAirTodayTv() {
   return fetch(
-    `${BASE_PATH}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1&region=kr`
+    `${BASE_PATH}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1&region=kr`
   ).then((response) => response.json());
 }
 export function getTopTv() {
@@ -74,5 +74,15 @@ export function getTopTv() {
 export function searchMulti(keyword: string | null) {
   return fetch(
     `${BASE_PATH}/search/multi?api_key=${API_KEY}&language=en-US&page=1&region=krR&query=${keyword}`
+  ).then((response) => response.json());
+}
+export function searchMovies(keyword: string | null) {
+  return fetch(
+    `${BASE_PATH}/search/movie?api_key=${API_KEY}&language=en-US&page=1&region=krR&query=${keyword}`
+  ).then((response) => response.json());
+}
+export function searchTv(keyword: string | null) {
+  return fetch(
+    `${BASE_PATH}/search/tv?api_key=${API_KEY}&language=en-US&page=1&region=krR&query=${keyword}`
   ).then((response) => response.json());
 }
