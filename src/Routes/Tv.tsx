@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import {
-  getOnAirTv,
+  getAirTodayTv,
   getPopularTv,
   getTopTv,
   IGetMoviesResult,
-  ONAIR,
+  AIRTODAY,
   POPULAR,
   TOPRATED,
 } from "../api";
@@ -60,9 +60,9 @@ function Tv() {
     ["tv", POPULAR],
     getPopularTv
   );
-  const { data: onAirData } = useQuery<IGetMoviesResult>(
-    ["tv", ONAIR],
-    getOnAirTv
+  const { data: airTodayData } = useQuery<IGetMoviesResult>(
+    ["tv", AIRTODAY],
+    getAirTodayTv
   );
   const { data: topRatedData } = useQuery<IGetMoviesResult>(
     ["tv", TOPRATED],
@@ -90,9 +90,9 @@ function Tv() {
             />
             <SliderBox
               page="tv"
-              title="현재 방송 중인 콘텐츠"
-              category={ONAIR}
-              data={onAirData}
+              title="오늘 방송 콘텐츠"
+              category={AIRTODAY}
+              data={airTodayData}
             />
             <SliderBox
               page="tv"
