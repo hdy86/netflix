@@ -1,6 +1,13 @@
 # Netflix
 
-### NomadCoder - React JS 마스터클래스
+넷플릭스 웹 사이트 클론 코딩
+
+github.io 배포 사이트 |
+<a href="https:////hdy86.github.io/#/netflix/" title="Netflix" target="_blank">🔗 link</a>
+
+## Using :
+
+NomadCoder - React JS 마스터클래스
 
 <a href="https://nomadcoders.co/react-masterclass/lobby" title="NomadCoder" target="_blank">NomadCoder 사이트</a>
 <br />
