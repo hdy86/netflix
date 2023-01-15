@@ -1,8 +1,9 @@
 import { useQuery } from "react-query";
 import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { IGetMoviesResult, searchMulti } from "../api";
+import { IGetMoviesResult, searchMovies, searchTv } from "../api";
 import ImgBox from "../Components/ImgBox";
+import SliderBox from "../Components/SliderBox";
 
 const Wrapper = styled.div`
   padding: 100px 40px;
@@ -26,6 +27,12 @@ const Title = styled.h2`
     font-weight: bold;
   }
 `;
+const Inner = styled.div`
+  padding: 0 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+`;
 const List = styled.div`
   display: grid;
   row-gap: 40px;
@@ -44,9 +51,13 @@ function Search() {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
 
-  const { data, isLoading } = useQuery<IGetMoviesResult>(
-    ["search", keyword],
-    () => searchMulti(keyword)
+  const { data: searchMovieData, isLoading } = useQuery<IGetMoviesResult>(
+    ["searchMovie", keyword],
+    () => searchMovies(keyword)
+  );
+  const { data: searchTvData } = useQuery<IGetMoviesResult>(
+    ["searchTv", keyword],
+    () => searchTv(keyword)
   );
 
   return (
@@ -56,15 +67,29 @@ function Search() {
       ) : (
         <>
           <Title>
-            <b>' {keyword} '</b> 검색 결과
+            <b>'{keyword}'</b> 검색 결과
           </Title>
-          {data?.results.length !== 0 ? (
+          <Inner>
+            <SliderBox
+              page="search"
+              title="영화 검색 결과"
+              category={"searchMovie"}
+              data={searchMovieData}
+            />
+            <SliderBox
+              page="search"
+              title="TV 프로그램 검색 결과"
+              category={"searchTv"}
+              data={searchTvData}
+            />
+          </Inner>
+          {/* {data?.results.length !== 0 ? (
             <List>
               <ImgBox keyword={keyword} data={data} />
             </List>
           ) : (
             <ListNone>검색 결과가 없습니다.</ListNone>
-          )}
+          )} */}
         </>
       )}
     </Wrapper>
