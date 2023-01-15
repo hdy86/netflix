@@ -27,19 +27,23 @@ const Title = styled.h2`
     font-weight: bold;
   }
 `;
+const SubTitle = styled.h5`
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: bold;
+`;
 const Inner = styled.div`
   padding: 0 40px;
   margin: 0 auto;
   box-sizing: border-box;
   overflow: hidden;
 `;
-const List = styled.div`
-  display: grid;
-  row-gap: 40px;
-  column-gap: 5px;
-  grid-template-columns: repeat(6, 1fr);
-`;
-
+// const List = styled.div`
+//   display: grid;
+//   row-gap: 40px;
+//   column-gap: 5px;
+//   grid-template-columns: repeat(6, 1fr);
+// `;
 const ListNone = styled.div`
   padding: 100px 0;
   font-size: 20px;
@@ -70,18 +74,32 @@ function Search() {
             <b>'{keyword}'</b> 검색 결과
           </Title>
           <Inner>
-            <SliderBox
-              page="search"
-              title="영화 검색 결과"
-              category={"searchMovie"}
-              data={searchMovieData}
-            />
-            <SliderBox
-              page="search"
-              title="TV 프로그램 검색 결과"
-              category={"searchTv"}
-              data={searchTvData}
-            />
+            {searchMovieData?.results.length !== 0 ? (
+              <SliderBox
+                page="search"
+                title="영화 검색 결과"
+                category={"searchMovie"}
+                data={searchMovieData}
+              />
+            ) : (
+              <>
+                <SubTitle>영화 검색 결과</SubTitle>
+                <ListNone>검색 결과가 없습니다.</ListNone>
+              </>
+            )}
+            {searchTvData?.results.length !== 0 ? (
+              <SliderBox
+                page="search"
+                title="TV 프로그램 검색 결과"
+                category={"searchTv"}
+                data={searchTvData}
+              />
+            ) : (
+              <>
+                <SubTitle>TV 프로그램 검색 결과</SubTitle>
+                <ListNone>검색 결과가 없습니다.</ListNone>
+              </>
+            )}
           </Inner>
           {/* {data?.results.length !== 0 ? (
             <List>
